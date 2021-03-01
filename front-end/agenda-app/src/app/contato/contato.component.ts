@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 export class ContatoComponent implements OnInit {
 
   declare formulario: FormGroup;
-
+  
   constructor(
     private service: ContatoService,
     private formBuilder: FormBuilder
@@ -21,12 +21,18 @@ export class ContatoComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       nome: ['', Validators.required],
-      email: ['', Validators.email]
+      email: ['', [Validators.required, Validators.email]]
     })
   }
   
   submit(){
-    console.log(this.formulario.value)
+    const erroNomeRequired = this.formulario.controls.nome.errors
+    const erroEmailInvalid = this.formulario.controls.email.errors
+    
+
+    console.log('erroNomeRequired', erroNomeRequired);
+    console.log('erroEmailInvalid', erroEmailInvalid);
+    
     //const c: Contato = new Contato();
    // c.nome = 'brenda'
    // c.email = 'brenda@gmail.com'
