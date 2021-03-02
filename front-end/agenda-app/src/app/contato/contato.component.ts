@@ -13,6 +13,7 @@ export class ContatoComponent implements OnInit {
 
   declare formulario: FormGroup;
   contatos: Contato[] = [];
+  colunas = ['id', 'nome', 'email', 'favorito']
   
   constructor(
     private service: ContatoService,
@@ -20,9 +21,20 @@ export class ContatoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.montarFormulario();
+    this.listarContatos();
+  }
+  
+  montarFormulario(){
     this.formulario = this.formBuilder.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
+    })
+  }
+
+  listarContatos(){
+    this.service.list().subscribe(response => {
+      this.contatos = response;
     })
   }
   
