@@ -2,13 +2,15 @@ package com.github.thirodrigues.agendaapi.model.api.rest;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.Part;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,8 +49,13 @@ public class ContatoController {
 	}
 	
 	@GetMapping
-	public List<Contato> contatos() {
-		return contatoRepository.findAll();
+	public Page<Contato> contatos( 
+		@RequestParam(value= "page", defaultValue = "0") Integer pagina,
+		@RequestParam(value= "size", defaultValue = "10") Integer tamanhoPagina
+	){
+		Sort sort = Sort.by(Sort.Direction.ASC, "nome");
+		PageRequest pageRequest = PageRequest.of(pagina, tamanhoPagina, sort);
+		return contatoRepository.findAll(pageRequest);
 	}
 	
 	@PatchMapping("/{id}/favorito")
