@@ -70,7 +70,7 @@
         </ng-template>
         <mat-card class="half-width">
             <mat-card-title>Novo Contato</mat-card-title>
-            <form [formGroup]="formulario" (ngSubmit)="submit()">
+            <form [formGroup]="formulario" (ngSubmit)="submit()" >
                 <mat-form-field class="full-width">
                     <mat-label>Nome: </mat-label>
                     <input formControlName="nome" matInput placeholder="Digite seu nome" />
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             <br />
-                <button mat-raised-button color="primary">Adicionar</button>
+                <button [disabled]="!formulario.valid" mat-raised-button color="primary">Adicionar</button>
             </form>
         </mat-card>
     </mat-tab>
