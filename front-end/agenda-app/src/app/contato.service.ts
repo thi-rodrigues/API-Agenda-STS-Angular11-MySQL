@@ -10,7 +10,7 @@ import { PaginaContato } from './contato/paginaContato';
 })
 export class ContatoService {
 
-  url: string = environment.apiBaseUrl;
+  url: string = "http://localhost:8080" + environment.apiBaseUrl;
 
   constructor(
     private http: HttpClient
