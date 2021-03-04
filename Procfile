@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Dspring.profile.active=prod -jar target/
+web: java -Dserver.port=$PORT -Dspring.profile.active=prod -jar target/agenda-api-0.0.1-SNAPSHOT.jar
