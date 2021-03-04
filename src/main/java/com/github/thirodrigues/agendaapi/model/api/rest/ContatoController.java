@@ -29,7 +29,7 @@ import com.github.thirodrigues.agendaapi.mode.entity.Contato;
 import com.github.thirodrigues.agendaapi.mode.repository.ContatoRepository;
 
 @RestController
-@RequestMapping("api/contatos")
+@RequestMapping("/api/contatos")
 @CrossOrigin("*")
 public class ContatoController {
 
